@@ -17,29 +17,29 @@ for (var i = 0; i < links.length; i++) {
 };
 console.log('work')
 
-CombatIndex=0;
+CombatIndex=0
+var MagicIndex=0
+var StealthIndex=0
+
 var Combat = function () {
   CombatIndex++
 }
-var MagicIndex=0
 var Magic = function () {
   MagicIndex++
 }
-var StealthIndex=0
 var Stealth = function () {
   StealthIndex++
 }
 
 var resault = function() {
 
-
-if (CombatIndex==7) {
+if (CombatIndex>6 && MagicIndex>-1 && MagicIndex<4 && StealthIndex>-1 && StealthIndex<4) {
   document.querySelector('.combat').textContent = 'Воин';
 } else {
-  if (MagicIndex==7) {
+  if (CombatIndex>-1 && CombatIndex<4 && MagicIndex>6 && StealthIndex>-1 && StealthIndex<4) {
     document.querySelector('.combat').textContent = 'Маг';
   } else {
-    if (StealthIndex==7) {
+    if (CombatIndex>-1 && CombatIndex<4 && MagicIndex>-1 && MagicIndex<4 && StealthIndex>6) {
       document.querySelector('.combat').textContent = 'Вор';
     } else {
       if (CombatIndex==6 && MagicIndex==4 && StealthIndex==0) {
