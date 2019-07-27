@@ -1,0 +1,44 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /plugins/
+Disallow: /search/
+Disallow: /cart/
+Disallow: */?s=
+Disallow: *sort=
+Disallow: *view=
+Disallow: *utm=
+Crawl-Delay: 5
+
+User-agent: GoogleBot
+Disallow: /admin/
+Disallow: /plugins/
+Disallow: /search/
+Disallow: /cart/
+Disallow: */?s=
+Disallow: *sort=
+Disallow: *view=
+Disallow: *utm=
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.gif
+
+User-agent: Yandex
+Disallow: /admin/
+Disallow: /plugins/
+Disallow: /search/
+Disallow: /cart/
+Disallow: */?s=
+Disallow: *sort=
+Disallow: *view=
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.gif
+Clean-Param: utm_source&utm_medium&utm_campaign
+Crawl-Delay: 2.5
+
+Sitemap: https://mifomen.github.io/sitemap.xml
+Host: https://mifomen.github.io
