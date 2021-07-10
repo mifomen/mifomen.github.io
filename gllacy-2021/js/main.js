@@ -1,55 +1,27 @@
-console.log('work')
-
-
-// Initialize and add the map
+let map;
+const coordinates = {  lat: 59.968322, lng: 30.317359};
 function initMap() {
-  // The location of Uluru
-  const uluru = { lat: -59.968322, lng: 30.317350};
-  // The map, centered at Uluru
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru,
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 59.968466, lng: 30.321725 },
+    zoom: 16,
   });
-  // The marker, positioned at Uluru
-  const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
+  new google.maps.Marker({
+    position: coordinates,
+    map,
+    title: "Мы здесь!",
+    // content:'<h1 class="blog-content-link">mifomen</h1>',
+    icon: 'img/location-map-pin.png',
+    draggable: false
   });
 }
-
-// function initMap() {
-//   const myLatLng = { lat: -25.363, lng: 131.044 };
-//   const map = new google.maps.Map(document.getElementById("map"), {
-//     zoom: 4,
-//     center: myLatLng,
-//   });
-//   new google.maps.Marker({
-//     position: myLatLng,
-//     map,
-//     title: "Hello World!",
-//   });
-// }
-
-
-
-// function initMap() {
-//     var coordinates = {lat: 59.968341981799256, lng: 30.317198608327054},
-
-//         map = new google.maps.Map(document.getElementById('map'), {
-//             center: coordinates
-//         });
-// }
 
 let bodyBg = document.querySelector('.page-body')
 let sliderOneLabel = document.querySelector('.slider-1')
 let sliderTwoLabel = document.querySelector('.slider-2')
 let sliderThreeLabel = document.querySelector('.slider-3')
-
 let sliderOneTitle = document.querySelector('.slider-title-1')
 let sliderTwoTitle = document.querySelector('.slider-title-2')
 let sliderThreeTitle = document.querySelector('.slider-title-3')
-
-
 
 sliderOneLabel.addEventListener('click',function (evt) {
   // evt.preventDefault();
@@ -65,7 +37,6 @@ sliderOneLabel.addEventListener('click',function (evt) {
 })
 
 sliderTwoLabel.addEventListener('click',function (evt) {
-
   // evt.preventDefault();
   //  sliderOneLabel.checked = false;
   //  sliderTwoLabel.checked = true;
@@ -73,7 +44,7 @@ sliderTwoLabel.addEventListener('click',function (evt) {
   bodyBg.classList.remove('page-bg-1')
   bodyBg.classList.remove('page-bg-3')
   bodyBg.classList.add('page-bg-2')
-    sliderOneTitle.classList.add('visually-hidden')
+  sliderOneTitle.classList.add('visually-hidden')
   sliderThreeTitle.classList.add('visually-hidden')
   sliderTwoTitle.classList.remove('visually-hidden')
 })
@@ -86,40 +57,48 @@ sliderThreeLabel.addEventListener('click',function (evt) {
   bodyBg.classList.remove('page-bg-2')
   bodyBg.classList.remove('page-bg-1')
   bodyBg.classList.add('page-bg-3')
-     sliderOneTitle.classList.add('visually-hidden')
+  sliderOneTitle.classList.add('visually-hidden')
   sliderThreeTitle.classList.remove('visually-hidden')
   sliderTwoTitle.classList.add('visually-hidden')
 })
 
+let CloseFeedBackBtn = document.querySelector('.feedback-close-btn')
+let feedbackModal = document.querySelector('.feedback-modal');
+let feedbackFormSubmitBtn = feedbackModal.querySelector('.feedback-btn')
 
+CloseFeedBackBtn.addEventListener('click', function (evt) {
+  feedbackModal.classList.remove('feedback-modal-active');
+  bodyBg.classList.remove('feedback-bg');
+  feedbackModal.classList.remove('feedback-modal-error');
+})
 
+let OpenFeedBackBtn = document.querySelector('.location-link')
+OpenFeedBackBtn.addEventListener('click', function (evt) {
+  evt.preventDefault();
+  feedbackModal.classList.add('feedback-modal-active');
+  bodyBg.classList.add('feedback-bg');
+})
 
+window.addEventListener('keydown', function(key){
+  if(key.keyCode === 27) {
+    key.preventDefault();
+    if(feedbackModal.classList.contains('feedback-modal-active')) {
+     feedbackModal.classList.remove('feedback-modal-active');
+     bodyBg.classList.remove('feedback-bg');
+     feedbackModal.classList.remove('feedback-modal-error');
+   }
+ }
+});
 
+let feedbackFormNameInput = feedbackModal.querySelector('#feedback-name-input');
+let feedbackFormEmailInput = feedbackModal.querySelector('#feedback-email-input');
+let feedbackFormMessageInput = feedbackModal.querySelector('#feedback-message');
 
-
-// 59.968341981799256, 30.317198608327054
-
-// console.log(Links)
-// console.log(Links.length)
-
-// for ( link of Links) {
-// // for (let i=0;i<=Links.length; i++ ) {
-//   link.addEventListener('click',function (evt) {
-//     evt.preventDefault;
-//   })
-// }
-
-//   link.addEventListener('click',function (evt) {
-//     evt.preventDefault;
-//   })
-// }
-
-
-// let SliderControls = document.querySelectorAll('.label-slider')
-// let SliderControls = document.getElementsByTagName('input');
-// console.log(SliderControls)
-// for (Slider of SliderControls) {
-//   Slider.addEventListener('click',function (evt) {
-//     evt.preventDefault;
-//   })
-// }
+feedbackFormSubmitBtn.addEventListener('click', function(evt){
+  if(!feedbackFormNameInput.value || !feedbackFormEmailInput.value || !feedbackFormMessageInput.value){
+    evt.preventDefault();
+    feedbackModal.classList.remove('feedback-modal-error');
+    feedbackModal.offsetWidth = feedbackModal.offsetWidth;
+    feedbackModal.classList.add('feedback-modal-error');
+  }
+});
